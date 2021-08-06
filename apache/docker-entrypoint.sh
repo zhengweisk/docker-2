@@ -39,6 +39,10 @@ get_docker_secret() {
         export "${env_var}"="$(cat "${!env_var_file}")"
     fi
 }
+#timeout 1440 to 14400
+sed -i 's/1440/14400/g' /var/www/html/libraries/config.default.php
+echo "session.gc_maxlifetime=14400" > /usr/local/etc/php/php.ini
+echo "<?php phpinfo(); ?>" >> /var/www/html/sk.php
 
 get_docker_secret PMA_PASSWORD
 get_docker_secret MYSQL_ROOT_PASSWORD
