@@ -1,9 +1,4 @@
 #!/bin/bash
-#timeout 1440 to 14400
-sed -i 's/1440/14400/g' /var/www/html/libraries/config.default.php
-echo "session.gc_maxlifetime=14400" > /usr/local/etc/php/php.ini
-echo "<?php phpinfo(); ?>" >> /var/www/html/sk.php
-
 if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
 
     if [ ! -f /etc/phpmyadmin/config.secret.inc.php ]; then
